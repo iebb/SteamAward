@@ -1,0 +1,50 @@
+syntax = "proto2";
+package test;
+
+
+message CLoyaltyRewards_GetSummary_Response_Summary {
+    required int64 points = 1;
+    required int64 points_earned = 2;
+    required int64 points_spent = 3;
+}
+
+message CLoyaltyRewards_GetSummary_Response {
+    required CLoyaltyRewards_GetSummary_Response_Summary summary = 1;
+    required uint32 timestamp_updated = 2;
+    required uint64 auditid_highwater = 3;
+}
+
+message CLoyaltyRewards_GetSummary_Request {
+    required fixed64 steamid = 1;
+}
+
+
+message CLoyaltyRewards_GetReactionConfig_Response {
+    required int64 points_cost = 1;
+    required int64 points_transferred = 2;
+    repeated CLoyaltyRewards_GetReactionConfig_Response_ReactionConfig reactions = 3;
+}
+
+message CLoyaltyRewards_GetReactionConfig_Response_ReactionConfig {
+    required uint32 reactionid = 1;
+    required uint32 points_cost = 2;
+    required uint64 points_transferred = 3;
+    repeated uint32 valid_target_types = 4;
+    repeated uint32 valid_ugc_types = 5;
+}
+
+
+message CLoyaltyRewards_GetReactions_Response {
+    repeated int64 reactionids = 1;
+}
+
+message CLoyaltyRewards_GetReactions_Request {
+    required int32 target_type = 1;
+    required uint64 targetid = 2;
+}
+
+message CLoyaltyRewards_AddReaction_Request {
+    required int32 target_type = 1;
+    required uint64 targetid = 2;
+    required uint32 reactionid = 3;
+}
